@@ -1,0 +1,10 @@
+[project]
+name = "hh_sru"
+version = "25.0.0"
+description = "selenium bot responding for vacancies on hh.ru"
+readme = "readme.md"
+requires-python = ">=3.14"
+dependencies = [
+    "selenium",
+    "rich",
+]
