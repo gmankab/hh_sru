@@ -23,4 +23,7 @@ chromium_profile = hh_state_dir / 'chromium'
 firefox_profile = hh_state_dir / 'firefox'
 driver: selenium.webdriver.remote.webdriver.WebDriver
 driver_wait: selenium.webdriver.support.ui.WebDriverWait
+
 os.environ['SE_AVOID_BROWSER_DOWNLOAD'] = 'true'
+# prevents automatic downloading of propretary chromium binary
+# instead please install open-source chromium builds via package manager
