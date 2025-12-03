@@ -19,8 +19,8 @@ xdg_state_home = Path(
     )
 )
 hh_state_dir = xdg_state_home / 'hh_sru'
-chromium_profile = hh_state_dir / 'chromium'
-firefox_profile = hh_state_dir / 'firefox'
+chromium_dir = hh_state_dir / 'chromium'
+firefox_dir = hh_state_dir / 'firefox'
 driver: selenium.webdriver.remote.webdriver.WebDriver
 driver_wait: selenium.webdriver.support.ui.WebDriverWait
 
