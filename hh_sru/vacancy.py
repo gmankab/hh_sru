@@ -2,8 +2,10 @@ import selenium.webdriver.support.expected_conditions
 import selenium.webdriver.support.ui
 import selenium.webdriver.remote.webelement
 import hh_sru.config
+import urllib.parse
 import rich.pretty
 import rich.repr
+import pathlib
 from selenium.webdriver.common.by import By
 
 
@@ -20,18 +22,22 @@ class Vacancy:
             By.CSS_SELECTOR,
             "[data-qa='serp-item__title-text']"
         ).text
-        self.url: str = str(
+        raw_url: str = str(
             element.find_element(
                 By.CSS_SELECTOR,
                 "a[data-qa='serp-item__title']",
             ).get_attribute('href')
-        ).removesuffix('?hhtmFrom=vacancy_search_list')
+        )
+        parts = urllib.parse.urlsplit(raw_url)
+        self.id = pathlib.PurePosixPath(parts.path).name
+        self.url = parts._replace(query='', fragment='').geturl()
 
 
     def __rich_repr__(self) -> rich.repr.Result:
-        yield 'company', self.company
-        yield 'title', self.title
+        yield 'id', self.id
         yield 'url', self.url
+        yield 'title', self.title
+        yield 'company', self.company
 
 
 def iterate_vacancies() -> None:
