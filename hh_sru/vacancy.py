@@ -1,9 +1,9 @@
+import selenium.webdriver.support.expected_conditions
+import selenium.webdriver.support.ui
+import selenium.webdriver.remote.webelement
+import hh_sru.config
 import rich.pretty
 import rich.repr
-import hh_sru.config
-import selenium.webdriver.remote.webelement
-import selenium.webdriver.support.ui
-import selenium.webdriver.support.expected_conditions
 from selenium.webdriver.common.by import By
 
 
