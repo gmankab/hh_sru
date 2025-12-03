@@ -6,11 +6,7 @@ import os
 
 
 engine_to_use: Literal['chromium'] | Literal['firefox'] = 'chromium'
-# for using chromium, install it via sudo dnf install chromium
-# for using firefox, install it via sudo dnf install firefox
-
-# hh.ru is known to have better performance on chromium
-# especially when using developer tools (ctrl+shift+i)
+# see readme.md for explanation why defaults to chromium
 
 xdg_state_home = Path(
     os.getenv(
