@@ -19,5 +19,5 @@ if you want the bot to use firefox, edit the `engine_to_use` parameter in `hh_sr
 - `sudo dnf install firefox` - for firefox
 - after the browser is installed, run the bot
 - `python -m ensurepip`
-- `pip install -U uv`
-- `uv run -m hh_sru`
+- `python -m pip install -U uv`
+- `python -m uv run -m hh_sru`
