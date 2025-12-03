@@ -1,11 +1,17 @@
+from pathlib import Path
+from typing import Literal
 import selenium.webdriver.remote.webdriver
 import selenium.webdriver.support.ui
-from pathlib import Path
-import typing
 import os
 
 
-engine_to_use: typing.Literal['chromium'] | typing.Literal['firefox'] = 'chromium'
+engine_to_use: Literal['chromium'] | Literal['firefox'] = 'chromium'
+# for using chromium, install it via sudo dnf install chromium
+# for using firefox, install it via sudo dnf install firefox
+
+# hh.ru is known to have better performance on chromium
+# especially when using developer tools (ctrl+shift+i)
+
 xdg_state_home = Path(
     os.getenv(
         'XDG_STATE_HOME',
