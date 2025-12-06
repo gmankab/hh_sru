@@ -4,20 +4,21 @@ import selenium.webdriver.remote.webdriver
 import selenium.common.exceptions
 import hh_sru.config
 import typing
+import rich
 from selenium.webdriver.common.by import By
 
 
-def wait() -> None:
+def wait_for_login() -> None:
     while True:
-        print('checking login status')
+        rich.print('checking login status')
         hh_sru.config.driver.get('https://hh.ru/search/vacancy')
         result = hh_sru.config.driver_wait.until(find_buttons)
         match result:
             case 'login':
-                print('please loggin, after that press enter in the terminal to continue')
+                rich.print('please loggin, after that press <enter> in the terminal to continue')
                 input()
             case 'chat':
-                print('you are logged in')
+                rich.print('you are logged in')
                 break
 
 
