@@ -3,7 +3,6 @@ import selenium.webdriver.support.ui
 import selenium.webdriver.remote.webelement
 import hh_sru.config
 import urllib.parse
-import rich.pretty
 import rich.repr
 import pathlib
 from selenium.webdriver.common.by import By
@@ -29,23 +28,15 @@ class Vacancy:
             ).get_attribute('href')
         )
         parts = urllib.parse.urlsplit(raw_url)
-        self.id = pathlib.PurePosixPath(parts.path).name
-        self.url = parts._replace(query='', fragment='').geturl()
+        self.id: int = int(pathlib.PurePosixPath(parts.path).name)
+        self.url: str = parts._replace(query='', fragment='').geturl()
 
+    def write(self) -> None:
+        with hh_sru.config.history_path.open(mode='a') as f:
+            f.write(f'{self.id}\n')
 
     def __rich_repr__(self) -> rich.repr.Result:
         yield 'id', self.id
         yield 'url', self.url
         yield 'title', self.title
         yield 'company', self.company
-
-
-def iterate_vacancies() -> None:
-    locator_vacancies = (
-        By.CSS_SELECTOR,
-        "div[data-qa='vacancy-serp__vacancy']",
-    )
-    vacancies = hh_sru.config.driver.find_elements(*locator_vacancies)
-    for element in vacancies:
-        vacancy = Vacancy(element)
-        rich.pretty.pprint(vacancy, expand_all=True)
