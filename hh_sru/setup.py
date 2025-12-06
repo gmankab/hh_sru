@@ -1,13 +1,28 @@
-import hh_sru.config
 import selenium.webdriver.support.ui
 import selenium.webdriver
+import hh_sru.config
+import rich
+
+
+def load_history() -> None:
+    if not hh_sru.config.history_path.exists():
+        return
+    with hh_sru.config.history_path.open() as f:
+        for line in f.readlines():
+            hh_sru.config.history_list.append(
+                int(line)
+            )
+    rich.print(
+        'skipping',
+        len(hh_sru.config.history_list),
+        'vacancies from',
+        hh_sru.config.history_path,
+    )
 
 
 def firefox() -> None:
-    hh_sru.config.firefox_dir.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
+    rich.print('loading firefox data from', hh_sru.config.firefox_dir)
+    hh_sru.config.firefox_dir.mkdir(parents=True, exist_ok=True)
     options = selenium.webdriver.FirefoxOptions()
     options.add_argument(f'-profile={hh_sru.config.firefox_dir}')
     hh_sru.config.driver = selenium.webdriver.Firefox(options=options)
@@ -17,6 +32,7 @@ def firefox() -> None:
     )
 
 def chromium():
+    rich.print('loading chromium data from', hh_sru.config.chromium_dir)
     options = selenium.webdriver.ChromeOptions()
     options.add_argument(f'--user-data-dir={hh_sru.config.chromium_dir}')
     hh_sru.config.driver = selenium.webdriver.Chrome(options=options)
