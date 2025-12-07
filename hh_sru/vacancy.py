@@ -42,9 +42,9 @@ class Vacancy:
 
     def log(self) -> None:
         if self.skip:
-            action = '   [blue]skip[/]'
+            action = '[blue]󰙡 skip[/]   '
         else:
-            action = '[green]respond[/]'
+            action = '[green]󰗠 respond[/]'
         rich.print(
             action,
             f'vacancy={self.index_on_page:02d}/49',

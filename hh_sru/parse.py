@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 
 def load_next_page() -> None:
     rich.print(
-        'loading page',
+        '󰖟 loading page',
         hh_sru.config.page,
     )
     hh_sru.config.driver.get(f'https://hh.ru/search/vacancy?page={hh_sru.config.page}')

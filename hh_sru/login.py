@@ -10,14 +10,14 @@ from selenium.webdriver.common.by import By
 
 def wait_for_login() -> None:
     while True:
-        rich.print('checking login status')
+        rich.print('󰀖 checking login status')
         result = hh_sru.config.driver_wait.until(find_buttons)
         match result:
             case 'login':
-                rich.print('please loggin, after that press <enter> in the terminal to continue')
+                rich.print('󰍂 please loggin, after that press <enter> in the terminal to continue')
                 input()
             case 'chat':
-                rich.print('you are logged in')
+                rich.print('󰍂 you are logged in')
                 break
 
 
