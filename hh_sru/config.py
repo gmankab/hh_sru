@@ -26,3 +26,4 @@ history_list: list[int] = []
 
 driver: selenium.webdriver.remote.webdriver.WebDriver
 driver_wait: selenium.webdriver.support.ui.WebDriverWait
+page: int = 0

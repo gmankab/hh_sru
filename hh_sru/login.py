@@ -11,7 +11,6 @@ from selenium.webdriver.common.by import By
 def wait_for_login() -> None:
     while True:
         rich.print('checking login status')
-        hh_sru.config.driver.get('https://hh.ru/search/vacancy')
         result = hh_sru.config.driver_wait.until(find_buttons)
         match result:
             case 'login':
