@@ -33,10 +33,11 @@ class Vacancy:
         self.url: str = parts._replace(query='', fragment='').geturl()
         self.index_on_page: int = index_on_page
         self.page: int = hh_sru.config.page
-        self.skip: bool = self.id in hh_sru.config.history_list
+        self.skip: bool = self.id in hh_sru.config.history_set
 
     def write(self) -> None:
         if not self.skip:
+            hh_sru.config.history_set.add(self.id)
             with hh_sru.config.history_path.open(mode='a') as f:
                 f.write(f'{self.id}\n')
 

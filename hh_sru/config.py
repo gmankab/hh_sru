@@ -22,7 +22,7 @@ hh_state_dir = xdg_state_home / 'hh_sru'
 chromium_dir = hh_state_dir / 'chromium'
 firefox_dir = hh_state_dir / 'firefox'
 history_path = hh_state_dir / 'history.txt'
-history_list: list[int] = []
+history_set: set[int] = set()
 
 driver: selenium.webdriver.remote.webdriver.WebDriver
 driver_wait: selenium.webdriver.support.ui.WebDriverWait

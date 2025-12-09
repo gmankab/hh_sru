@@ -9,12 +9,12 @@ def load_history() -> None:
         return
     with hh_sru.config.history_path.open() as f:
         for line in f.readlines():
-            hh_sru.config.history_list.append(
+            hh_sru.config.history_set.add(
                 int(line)
             )
     rich.print(
         '[blue]󰙡 will skip[/]',
-        len(hh_sru.config.history_list),
+        len(hh_sru.config.history_set),
         'vacancies from',
         hh_sru.config.history_path,
     )
