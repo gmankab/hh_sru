@@ -14,7 +14,7 @@ def wait_for_login() -> None:
         result = hh_sru.config.driver_wait.until(find_buttons)
         match result:
             case 'login':
-                rich.print('󰍂 please loggin, after that press <enter> in the terminal to continue')
+                rich.print('󰍂 please login, after that press <enter> in the terminal to continue')
                 input()
             case 'chat':
                 rich.print('󰍂 you are logged in')
@@ -26,15 +26,12 @@ def find_buttons(
 ) -> typing.Literal['login'] | typing.Literal['chat'] | typing.Literal[False]:
     if driver.find_elements(
         By.CSS_SELECTOR,
-        'a[data-qa="mainmenu_profile-link"][href*="/account/login"]',
+        '[data-qa="mainmenu_profile-link"]',
     ):
         return 'login'
-
     if driver.find_elements(
         By.CSS_SELECTOR,
-        'svg[class*="magritte-icon"][class*="magritte-icon_initial-primary"]',
+        '[data-qa="chatik-activator"]',
     ):
         return 'chat'
     return False
-
-
