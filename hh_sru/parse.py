@@ -1,3 +1,4 @@
+import selenium.webdriver.support.expected_conditions
 import hh_sru.config
 import hh_sru.vacancy
 import rich
@@ -5,11 +6,9 @@ from selenium.webdriver.common.by import By
 
 
 def load_next_page() -> None:
-    rich.print(
-        '󰖟 loading page',
-        hh_sru.config.page,
-    )
-    hh_sru.config.driver.get(f'https://hh.ru/search/vacancy?page={hh_sru.config.page}')
+    url = f'https://hh.ru/search/vacancy?page={hh_sru.config.page}'
+    rich.print('󰖟 loading page', url)
+    hh_sru.config.driver.get(url)
     hh_sru.config.page += 1
 
 
@@ -32,3 +31,18 @@ def vacancies() -> None:
         )
         vacancy.write()
         vacancy.log()
+
+        exit()
+
+
+def parse_vacancy(vacancy: hh_sru.vacancy.Vacancy) -> None:
+    rich.print('󰖟 loading page', vacancy.url)
+    hh_sru.config.driver.get(vacancy.url)
+    button = hh_sru.config.driver_wait.until(
+        selenium.webdriver.support.expected_conditions
+        .presence_of_all_elements_located((
+            By.CSS_SELECTOR,
+            'span.magritte-button__label___zplmt_7-0-4',
+        ))
+    )
+    button.click()
