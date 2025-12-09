@@ -10,7 +10,7 @@ engine_to_use: Literal['chromium'] | Literal['firefox'] = 'chromium'
 
 os.environ['SE_AVOID_BROWSER_DOWNLOAD'] = 'true'
 # prevents automatic downloading of propretary chromium binary
-# instead please install open-source chromium builds via package manager
+# instead please install open-source chromium build via package manager
 
 xdg_state_home = Path(
     os.getenv(
